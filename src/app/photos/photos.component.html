@@ -1,0 +1,77 @@
+<div class="row">
+  <!-- Search images from flickr.com -->
+  <div class="input-group col-12 col-sm-12 col-md-6">		    
+    <input [(ngModel)]="searchWord" (keyup.enter)="getPhotos()" name="searchFlickr" type="text" class="form-control" placeholder="Search flickr..." required>
+    <div class="input-group-append">
+      <button (click)="getPhotos()" class="btn btn-default">Search flickr</button>
+    </div>
+  </div>
+  <!-- Filter currently loaded photos by title of photo  -->
+  <div class="input-group col-12 col-sm-12 col-md-4">
+    <div class="input-group-prepend">
+      <button class="btn btn-default">Filter</button>
+    </div>
+    <input [(ngModel)]="filterText" type="text" class="form-control" placeholder="Filter photos by title...">
+  </div>
+</div>
+
+<!-- Infinite scroll options -->
+<div class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="3"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+    
+  <div *ngFor="let photo of (photos | photoFilter : filterText)" class="photo_wrap col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+    <div class="photo">
+      <div class="image_wrap">
+        <span class="helper"></span> <!-- Helper class is used to vertically align the image if its height is less than the height of the div -->
+          <!-- To optimize performance and content loading display thumbnail size pictures using flickr's API option (320px on longest side) -->
+          <!-- Modal opening on click with more detailed information and bigger picture -->
+          <img (click)="showInfo(content, photo)" src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_n.jpg" alt="pic">
+      </div>
+      <div class="info">
+
+        <strong> TITLE: </strong>
+        <a href="https://www.flickr.com/photos/{{photo.owner}}/{{photo.id}}"> <!-- Link to original size photo in flickr website -->
+          <!-- Restrict title length to 70 characters to prevent overflow and show "N/A" if the photo has no title -->
+          {{ photo.title.length > 70 ? (photo.title | slice:0:70) + '..' : photo.title || "N/A" }}
+        </a><br>
+
+        <strong> AUTHOR: </strong> 
+        <a href="https://www.flickr.com/people/{{photo.owner}}/"> View flickr page</a> <!-- Link to authors flickr page -->
+        
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div> <!-- Fix for Infinite scroll  -->
+</div>
+
+<!-- Modal Photo Info -->
+<ng-template #content let-c="close" let-d="dismiss" id="test">
+  <div class="modal-header">
+    <h4 class="modal-title">Photo info</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="https://farm{{photoInfo.photo.farm}}.staticflickr.com/{{photoInfo.photo.server}}/{{photoInfo.photo.id}}_{{photoInfo.photo.secret}}_z.jpg" class="img-fluid" alt="pic">
+      <div class="photo_info">
+
+        <p><strong>Title: </strong><span>{{photoInfo.photo.title._content }} </span></p>
+        
+        <p><strong>Description: </strong><span [innerHTML]="photoInfo.photo.description._content"></span></p> <!-- Using html binding because descriptions often return html tags -->
+        
+        <p><strong>Author: </strong><a href="https://www.flickr.com/people/{{photoInfo.photo.owner.nsid}}/">{{photoInfo.photo.owner.realname ? photoInfo.photo.owner.realname : photoInfo.photo.owner.username }} </a></p>
+
+        <p><strong>Tags (clickable): </strong><span *ngFor="let tag of photoInfo.photo.tags.tag ; let isLast=last"> 
+          <a href="https://www.flickr.com/photos/tags/{{tag.raw}}">{{tag.raw}}{{isLast ? '' : ', '}} </a></span> <!-- Added link for tags leading to flickr -->
+        </p>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

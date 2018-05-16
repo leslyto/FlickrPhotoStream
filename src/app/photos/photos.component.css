@@ -1,0 +1,83 @@
+.photo_wrap {
+    float: left;
+    height: 320px;
+    margin-bottom: 15px;
+}
+
+.photo {
+    height: 320px;
+    min-width: 280px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    padding-top: 15px;
+}
+
+.image_wrap {
+    margin: 0 auto;
+    width: 280px;
+    height: 200px;
+    text-align: center;
+}
+
+.photo:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.image_wrap img {
+    max-width: 280px;
+    max-height: 200px;
+    cursor: pointer;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.info {
+    padding: 5px 20px 5px 20px;
+    font-size: 14px;
+    word-break: break-word; /*prevent overflow of title text*/
+}
+
+.info a {
+    color: #b9b9b9;
+}
+
+.info a:hover {
+    color: #b9b9b9;
+}
+
+.input-group {
+    margin-bottom: 5px;
+}
+
+.clear {
+    clear: both;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body a {
+    color: #b9b9b9;
+}
+
+.modal-header {
+    border-bottom: 1px solid #404040;
+}
+
+.modal-footer {
+    border-top: 1px solid #404040;
+}
+
+.modal-header, .modal-body, .modal-footer {
+    background-color: rgb(51, 51, 51);
+}
+
+.photo_info {
+    margin-top: 10px;
+    text-align: left;
+}
