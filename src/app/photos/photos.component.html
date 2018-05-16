@@ -44,6 +44,10 @@
       </div>
     </div>
   </div>
+  <!-- If search returns no matches -->
+  <div *ngIf="(photos | photoFilter : filterText).length === 0">
+    <p>No matches</p>
+  </div>
   <div class="clear"></div> <!-- Fix for Infinite scroll  -->
 </div>
 
