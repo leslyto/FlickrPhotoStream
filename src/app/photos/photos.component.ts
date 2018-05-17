@@ -22,12 +22,14 @@ export class PhotosComponent implements OnInit {
   }
 
   getPhotos() {
-    this.FlickrService.getPhotos(this.searchWord)
-      .subscribe(
-        results => this.loadPhotos(results), 
-        err => this.handleError(err)
-      )
-    this.page = 1
+    if(this.searchWord !== "") {
+      this.FlickrService.getPhotos(this.searchWord)
+        .subscribe(
+          results => this.loadPhotos(results), 
+          err => this.handleError(err)
+        )
+      this.page = 1
+    }
   }
   
   loadPhotos(data) {
@@ -57,6 +59,10 @@ export class PhotosComponent implements OnInit {
         },
         err => this.handleError(err)
       )
+  }
+
+  checkIfResults() {
+    return this.photos.length === 0
   }
   
   handleError(error) {
