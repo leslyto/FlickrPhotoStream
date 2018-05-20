@@ -1,9 +1,9 @@
 <div class="row">
   <!-- Search images from flickr.com -->
   <div class="input-group col-12 col-sm-12 col-md-6">		    
-    <input [(ngModel)]="searchWord" (keyup.enter)="getPhotos()" name="searchFlickr" type="text" class="form-control" placeholder="Search flickr..." required>
+    <input id="search-flickr-input" [(ngModel)]="searchWord" (keyup.enter)="getPhotos()" name="searchFlickr" type="text" class="form-control" placeholder="Search flickr..." required>
     <div class="input-group-append">
-      <button (click)="getPhotos()" class="btn btn-default">Search flickr</button>
+      <button id="search-flickr-btn" (click)="getPhotos()" class="btn btn-default">Search flickr</button>
     </div>
   </div>
   <!-- Filter currently loaded photos by title of photo  -->
