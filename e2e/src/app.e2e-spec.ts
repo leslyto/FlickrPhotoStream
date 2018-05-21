@@ -30,9 +30,11 @@ describe('workspace-project App', () => {
 
   it('should have infinite scroll', function() {
     page.scrollPageToBottom().then(function(){
-      page.getPhotosCount().then(function(count){
-        expect(count).toEqual(60);
-      });
+      setTimeout(function(){
+        page.getPhotosCount().then(function(count){
+          expect(count).toEqual(60);
+        });
+      }, 2000)
     })
   })
 
