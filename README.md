@@ -1,15 +1,22 @@
-# FlickrAPI
+# Flickr Photo Stream
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 A simple photo searcher using Flickr's search API. 
 Live preview can be found here : [https://leslyto.github.io/flickr-photo-stream/](https://leslyto.github.io/flickr-photo-stream/)
 
-## Sample screenshots
+## Sample screenshot
 ![screenshot](https://i.imgur.com/cYu2R8i.jpg)
 
-## Development server
-
-Run `npm install` and `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+## Run on development server
+* Clone github repo
+`clone https://github.com/leslyto/FlickrPhotoStream.git`
+* Navigate to project folder 
+`cd FlickrPhotoStream`
+* Run package installer
+`npm install`
+* Start local webserver
+`ng serve`  
+* Navigate to `http://localhost:4200/`.
 
 ## Build
 
